@@ -2,88 +2,155 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
 
-# -------------------------------
+# ===============================
 # CONFIGURAÇÃO DA PÁGINA
-# -------------------------------
+# ===============================
 st.set_page_config(
     page_title="OncoPredict",
     page_icon="🧬",
     layout="wide"
 )
 
-# -------------------------------
+# ===============================
+# ESTILO (CSS leve)
+# ===============================
+st.markdown(
+    """
+    <style>
+        .card {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# ===============================
 # SIDEBAR
-# -------------------------------
+# ===============================
 st.sidebar.title("🧬 OncoPredict")
-st.sidebar.markdown("Plataforma de apoio à decisão em oncologia")
+st.sidebar.caption("Plataforma de apoio à decisão em oncologia")
 
 menu = st.sidebar.radio(
     "Navegação",
-    [
-        "Visão Geral",
-        "Simulação de Tratamento",
-        "Sobre o Projeto"
-    ]
+    ["Visão Geral", "Simulação", "Sobre"]
 )
 
-# -------------------------------
-# CONTEÚDO PRINCIPAL
-# -------------------------------
+# ===============================
+# TÍTULO PRINCIPAL
+# ===============================
 st.title("OncoPredict 🧬")
+st.caption("Protótipo conceitual para medicina personalizada em oncologia")
 
+# ===============================
+# VISÃO GERAL
+# ===============================
 if menu == "Visão Geral":
-    st.subheader("Visão Geral do Protótipo")
 
-    st.markdown(
-        """
-        Este é um **protótipo inicial** da plataforma **OncoPredict**, 
-        desenvolvida para apoiar decisões clínicas em oncologia.
+    col1, col2, col3 = st.columns(3)
 
-        🔹 Objetivo: integrar múltiplas variáveis clínicas, biológicas e contextuais  
-        🔹 Foco inicial: **câncer de mama** e **leucemias**  
-        🔹 Evolução futura: incorporação de estudos clínicos e IA preditiva
-        """
-    )
+    with col1:
+        st.markdown(
+            """
+            <div class="card">
+            <h4>🎯 Objetivo</h4>
+            Apoiar decisões clínicas integrando múltiplas variáveis
+            além de protocolos fixos.
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
-    st.info("Este protótipo ainda não realiza recomendações clínicas reais.")
+    with col2:
+        st.markdown(
+            """
+            <div class="card">
+            <h4>🧠 Diferencial</h4>
+            Análise personalizada considerando fatores clínicos,
+            biológicos e contextuais.
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
-elif menu == "Simulação de Tratamento":
-    st.subheader("Simulação (Protótipo Conceitual)")
+    with col3:
+        st.markdown(
+            """
+            <div class="card">
+            <h4>🚀 Status</h4>
+            Protótipo em desenvolvimento para submissão
+            ao Programa Centelha.
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
-    idade = st.slider("Idade do paciente", 0, 100, 50)
-    estadio = st.selectbox(
-        "Estágio do câncer",
-        ["I", "II", "III", "IV"]
-    )
+    st.info("Este sistema ainda **não realiza recomendações clínicas reais**.")
 
-    st.markdown("### Parâmetros selecionados")
-    st.write(f"- Idade: **{idade} anos**")
-    st.write(f"- Estágio: **{estadio}**")
+# ===============================
+# SIMULAÇÃO
+# ===============================
+elif menu == "Simulação":
 
-    # Gráfico fictício apenas para visualização
+    st.subheader("Simulação Conceitual de Tratamento")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        idade = st.slider("Idade do paciente", 0, 100, 50)
+        estadio = st.selectbox(
+            "Estágio do câncer",
+            ["I", "II", "III", "IV"]
+        )
+
+    with col2:
+        st.markdown(
+            """
+            <div class="card">
+            <h4>📊 Parâmetros Selecionados</h4>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+        st.write(f"**Idade:** {idade} anos")
+        st.write(f"**Estágio:** {estadio}")
+
+    # Gráfico fictício
     x = np.linspace(0, 10, 50)
     y = np.random.rand(50)
 
     fig, ax = plt.subplots()
     ax.plot(x, y)
-    ax.set_title("Exemplo de saída do modelo (fictícia)")
+    ax.set_title("Exemplo de saída do modelo (dados fictícios)")
 
     st.pyplot(fig)
 
-elif menu == "Sobre o Projeto":
-    st.subheader("Sobre o OncoPredict")
+# ===============================
+# SOBRE
+# ===============================
+elif menu == "Sobre":
 
     st.markdown(
         """
-        **OncoPredict** é um projeto em desenvolvimento com foco em:
+        <div class="card">
+        <h3>Sobre o OncoPredict</h3>
+
+        O **OncoPredict** é um projeto em desenvolvimento com foco em:
 
         - Medicina personalizada
-        - Integração de múltiplas variáveis
         - Apoio à decisão clínica
+        - Integração de dados heterogêneos
         - Transparência e interpretabilidade
 
-        🚀 Projeto submetido ao **Programa Centelha**
-        """
+        <br>
+        <strong>Submissão:</strong> Programa Centelha
+        </div>
+        """,
+        unsafe_allow_html=True
     )
 
-    st.success("Este projeto está em fase de prototipação.")
+    st.success("Protótipo funcional — em evolução contínua.")
