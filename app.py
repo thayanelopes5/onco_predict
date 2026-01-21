@@ -6,7 +6,7 @@ import numpy as np
 # CONFIGURAÇÃO DA PÁGINA
 # ===============================
 st.set_page_config(
-    page_title="OncoPredict",
+    page_title="Precognium",
     page_icon="🧬",
     layout="wide"
 )
@@ -32,7 +32,7 @@ st.markdown(
 # ===============================
 # SIDEBAR
 # ===============================
-st.sidebar.title("🧬 OncoPredict")
+st.sidebar.title("🧬 Precognium")
 st.sidebar.caption("Plataforma de apoio à decisão em oncologia")
 
 menu = st.sidebar.radio(
@@ -43,16 +43,15 @@ menu = st.sidebar.radio(
 # ===============================
 # TÍTULO PRINCIPAL
 # ===============================
-st.title("OncoPredict 🧬")
+st.title("Precognium 🧬")
 st.caption("Protótipo conceitual para medicina personalizada em oncologia")
 
 # ===============================
 # VISÃO GERAL
 # ===============================
 if menu == "Visão Geral":
-
     col1, col2, col3 = st.columns(3)
-
+    
     with col1:
         st.markdown(
             """
@@ -64,7 +63,7 @@ if menu == "Visão Geral":
             """,
             unsafe_allow_html=True
         )
-
+    
     with col2:
         st.markdown(
             """
@@ -76,7 +75,7 @@ if menu == "Visão Geral":
             """,
             unsafe_allow_html=True
         )
-
+    
     with col3:
         st.markdown(
             """
@@ -88,25 +87,24 @@ if menu == "Visão Geral":
             """,
             unsafe_allow_html=True
         )
-
+    
     st.info("Este sistema ainda **não realiza recomendações clínicas reais**.")
 
 # ===============================
 # SIMULAÇÃO
 # ===============================
 elif menu == "Simulação":
-
     st.subheader("Simulação Conceitual de Tratamento")
-
+    
     col1, col2 = st.columns(2)
-
+    
     with col1:
         idade = st.slider("Idade do paciente", 0, 100, 50)
         estadio = st.selectbox(
             "Estágio do câncer",
             ["I", "II", "III", "IV"]
         )
-
+    
     with col2:
         st.markdown(
             """
@@ -118,39 +116,36 @@ elif menu == "Simulação":
         )
         st.write(f"**Idade:** {idade} anos")
         st.write(f"**Estágio:** {estadio}")
-
+    
     # Gráfico fictício
     x = np.linspace(0, 10, 50)
     y = np.random.rand(50)
-
+    
     fig, ax = plt.subplots()
     ax.plot(x, y)
     ax.set_title("Exemplo de saída do modelo (dados fictícios)")
-
     st.pyplot(fig)
 
 # ===============================
 # SOBRE
 # ===============================
 elif menu == "Sobre":
-
     st.markdown(
         """
         <div class="card">
-        <h3>Sobre o OncoPredict</h3>
-
-        O **OncoPredict** é um projeto em desenvolvimento com foco em:
-
-        - Medicina personalizada
-        - Apoio à decisão clínica
-        - Integração de dados heterogêneos
-        - Transparência e interpretabilidade
-
+        <h3>Sobre o Precognium</h3>
+        O **Precognium** é um projeto em desenvolvimento com foco em:
+        <ul>
+            <li>Medicina personalizada</li>
+            <li>Apoio à decisão clínica</li>
+            <li>Integração de dados heterogêneos</li>
+            <li>Transparência e interpretabilidade</li>
+        </ul>
         <br>
         <strong>Submissão:</strong> Programa Centelha
         </div>
         """,
         unsafe_allow_html=True
     )
-
+    
     st.success("Protótipo funcional — em evolução contínua.")
